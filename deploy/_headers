@@ -1,0 +1,5 @@
+# Cloudflare Pages — cache de assets estáticos
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/videos/*
+  Cache-Control: public, max-age=86400

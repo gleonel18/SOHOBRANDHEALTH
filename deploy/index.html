@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soho Brand Health — Fotografia e vídeo autorais para profissionais de saúde</title>
+<script src="./support.js"></script>
+</head>
+<body data-video-base="">
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0e1230;        /* canvas escuro */
+  --navy-2:#14193f;      /* navy da marca */
+  --navy-3:#171d40;      /* tinta escura */
+  --cream:#f4f1e8;       /* off-white quente */
+  --cream-2:#eae5d6;     /* areia */
+  --paper:#f8f6ef;       /* seção clara */
+  --ink:#15183a;         /* texto sobre claro */
+  --gold:#c9a24b;        /* accent dourado (sat<80%) */
+  --gold-soft:#c9b78a;   /* champagne da logo */
+  --text:#f1eee6;        /* texto sobre navy */
+  --muted:#a7a8bd;       /* secundário sobre navy */
+  --muted-ink:#5c5f78;   /* secundário sobre claro */
+  --br:rgba(241,238,230,.12);   /* whisper border dark */
+  --br-ink:rgba(21,24,58,.10);  /* whisper border light */
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --ease2:cubic-bezier(0.22,1,0.36,1);
+  --maxw:1600px;
+  --shadow:0 30px 70px -30px rgba(6,8,26,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:120%}
+@media(min-width:1400px){html{font-size:128%}}
+@media(min-width:1800px){html{font-size:140%}}
+body{
+  background:var(--navy);color:var(--text);
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  font-size:1rem;line-height:1.7;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:var(--gold);color:var(--navy)}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.02em}
+em{font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* grain */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1000;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,5vw,5.5rem)}
+.sec{padding:clamp(5.5rem,12vw,11rem) 0;position:relative}
+.eyebrow{font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.28em;color:var(--gold);display:inline-block;margin-bottom:1.6rem}
+.eyebrow.on-light{color:#a9822e}
+.lead{font-size:clamp(1.25rem,1.7vw,1.65rem);line-height:1.75;color:var(--muted);max-width:56ch}
+.sec-light .lead{color:var(--muted-ink)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.v{opacity:1;transform:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
+.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+.rv[data-d="5"]{transition-delay:.4s}.rv[data-d="6"]{transition-delay:.48s}
+
+/* in-page photo swap button */
+.photo-swap-host:hover > .photo-swap-btn,.photo-swap-btn:focus-visible{opacity:1;transform:translateY(0)}
+.photo-swap-btn{position:absolute;top:12px;right:12px;z-index:40;display:inline-flex;align-items:center;gap:.45rem;
+  padding:.5rem .85rem;border:0;border-radius:999px;cursor:pointer;opacity:0;transform:translateY(-4px);
+  background:rgba(14,18,48,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:#f1eee6;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.01em;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);transition:opacity .25s var(--ease),transform .25s var(--ease),background .2s}
+.photo-swap-btn:hover{background:var(--gold);color:#171d40}
+.photo-swap-btn svg{flex:none}
+@media(hover:none){.photo-swap-btn{opacity:1;transform:none;padding:.4rem;font-size:0;gap:0}.photo-swap-btn svg{width:18px;height:18px}}
+
+/* heading + line reveals, whole-element fade so text stays directly editable */
+.wr,.lr{opacity:0;transform:translateY(14px);filter:blur(.3px);
+  transition:opacity .9s var(--ease2),transform .9s var(--ease2),filter .9s var(--ease2);will-change:opacity,transform}
+.wr.v,.lr.v{opacity:1;transform:none;filter:none}
+.wr em{font-style:italic}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font-weight:600;font-size:1.05rem;
+  padding:.95rem 1.7rem;border-radius:100px;transition:transform .25s var(--ease),background .25s,color .25s,box-shadow .25s;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(201,162,75,.6)}
+.btn-ghost{border-color:var(--br);color:var(--text)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-ghost.on-light{border-color:var(--br-ink);color:var(--ink)}
+.btn-ghost.on-light:hover{border-color:#a9822e;color:#a9822e}
+.btn .ico{width:1.05em;height:1.05em;stroke:currentColor;fill:none;stroke-width:1.7}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s var(--ease),border-color .4s,padding .4s;
+  border-bottom:1px solid transparent;padding:1.65rem 0}
+.nav.solid{background:rgba(14,18,48,.82);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border-bottom-color:var(--br);padding:1.06rem 0}
+.nav-in{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,5vw,5.5rem)}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand img{height:43px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;align-items:center;gap:2.2rem}
+.nav-links a.lk{font-size:1.19rem;font-weight:500;letter-spacing:.02em;color:var(--muted);position:relative;padding:.2rem 0;transition:color .25s}
+.nav-links a.lk::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--gold);transition:width .3s var(--ease)}
+.nav-links a.lk:hover{color:var(--text)}.nav-links a.lk:hover::after{width:100%}
+.nav-cta{padding:.75rem 1.55rem;font-size:1.15rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px;z-index:120}
+.burger span{width:24px;height:2px;background:var(--text);transition:transform .3s var(--ease),opacity .3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;background:var(--navy-2);z-index:110;display:flex;flex-direction:column;justify-content:center;gap:1.5rem;padding:2rem clamp(1.5rem,6vw,3rem);
+  transform:translateX(100%);transition:transform .5s var(--ease);}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--text)}
+.mobile-menu .btn{align-self:flex-start;margin-top:1rem}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:-8% 0 -8% 0;z-index:0;will-change:transform}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.hero-scrim{position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(14,18,48,.55) 0%,rgba(14,18,48,.15) 32%,rgba(14,18,48,.55) 72%,rgba(14,18,48,.96) 100%),
+    linear-gradient(90deg,rgba(14,18,48,.8) 0%,rgba(14,18,48,.15) 55%,transparent 100%)}
+.hero-in{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,5vw,5.5rem) clamp(3.5rem,7vw,6rem)}
+.hero h1{font-size:clamp(3.45rem,9.2vw,8.05rem);letter-spacing:-.04em;line-height:.98;max-width:16ch;font-weight:500}
+.hero h1 em{color:var(--gold-soft)}
+.hero-rot{display:flex;align-items:baseline;flex-wrap:wrap;gap:.4rem .55rem;margin-top:1.9rem;font-size:clamp(1.44rem,2.76vw,1.96rem);color:var(--muted)}
+.hero .eyebrow{font-size:.94rem}
+.rot-wrap{position:relative;overflow:hidden;height:1.5em;min-width:13ch;display:inline-block;vertical-align:bottom}
+.rot-word{position:absolute;left:0;top:0;white-space:nowrap;color:var(--gold-soft);font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+  will-change:transform,opacity;transition:transform .55s var(--ease2),opacity .35s ease}
+.rot-word.st-vis{transform:translateY(0);opacity:1}
+.rot-word.st-exit{transform:translateY(-120%);opacity:0}
+.rot-word.st-enter{transform:translateY(120%);opacity:0;transition:none}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.6rem}
+.hero-meta{position:absolute;top:clamp(6rem,12vh,8rem);right:clamp(1.25rem,4vw,4rem);z-index:2;text-align:right;
+  font-size:.94rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);line-height:2}
+.scroll-cue{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:52px;background:linear-gradient(var(--gold),transparent);opacity:.6}
+.scroll-cue::after{content:"";position:absolute;top:0;left:0;width:1px;height:16px;background:var(--gold);animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(40px);opacity:0}100%{opacity:0}}
+
+/* ============ TICKER ============ */
+.ticker{overflow:hidden;background:var(--navy-2);border-top:1px solid var(--br);border-bottom:1px solid var(--br);padding:1.05rem 0}
+.tk-track{display:flex;width:max-content;gap:0;animation:tkScroll 42s linear infinite}
+.ticker:hover .tk-track{animation-play-state:paused}
+.tk-item{font-size:.86rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;color:var(--muted);padding:0 1.6rem;transition:color .2s}
+.tk-item:hover{color:var(--gold)}
+.tk-sep{align-self:center;display:inline-flex}
+.tk-sep::before{content:"";width:5px;height:5px;background:var(--gold);opacity:.55;transform:rotate(45deg)}
+@keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ MANIFESTO ============ */
+.manifesto{text-align:left}
+.manifesto .big{font-size:clamp(2.6rem,5.2vw,5.2rem);letter-spacing:-.035em;line-height:1.05;max-width:24ch;font-weight:500}
+.manifesto .big em{color:var(--gold-soft)}
+.mani-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(3rem,6vw,7rem);align-items:end;margin-top:clamp(3.5rem,6vw,5.5rem)}
+.mani-quote{border-left:2px solid var(--gold);padding-left:1.8rem;margin:0}
+.mani-quote p{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.55rem,2.6vw,2.1rem);line-height:1.4;color:var(--text);letter-spacing:-.01em}
+.mani-quote .who{margin-top:1.1rem;font-size:.74rem;font-family:'Plus Jakarta Sans',sans-serif;font-style:normal;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+.hl{color:var(--gold-soft)}
+
+/* ============ CINEMATIC BREAK ============ */
+.cine{position:relative;overflow:hidden}
+.cine{height:clamp(360px,56vw,680px)}
+.cine img{width:100%;height:130%;object-fit:cover;display:block;will-change:transform;position:absolute;inset:-15% 0 auto 0}
+.cine-ov{position:absolute;inset:0;display:flex;align-items:flex-end;
+  background:linear-gradient(180deg,transparent 25%,rgba(10,12,32,.35) 60%,rgba(10,12,32,.9) 100%);
+  padding:clamp(2rem,6vw,5rem)}
+.cine-tx{color:#fff;font-family:'Fraunces',serif;font-size:clamp(2rem,4.4vw,3.9rem);font-weight:500;line-height:1.1;letter-spacing:-.03em;max-width:24ch;
+  opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease2),transform 1.1s var(--ease2)}
+.cine-tx em{color:var(--gold-soft)}
+.cine-ov.v .cine-tx{opacity:1;transform:none}
+
+/* ============ WORD SWAP ============ */
+.swap-sec{background:var(--navy-2);position:relative;overflow:hidden}
+.swap-sec .wrap{position:relative;z-index:2}
+/* NeuroNoise shader host, organic gold veins behind the navy */
+.shader-host{position:absolute;inset:0;z-index:0;opacity:.5}
+.shader-host canvas.shader-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.shader-host::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 50%,transparent 30%,var(--navy-2) 100%)}
+.shader-host.shader-static{opacity:1;background:radial-gradient(120% 90% at 50% 40%,rgba(201,162,75,.10),var(--navy-2) 70%)}
+.swap{font-family:'Fraunces',serif;font-size:clamp(2.7rem,5.6vw,5.6rem);letter-spacing:-.04em;line-height:1.08;text-align:center;max-width:26ch;margin:0 auto;font-weight:500}
+.ws-old{position:relative;display:inline-block;color:var(--muted)}
+.ws-old::after{content:"";position:absolute;left:0;top:54%;width:0;height:3px;background:var(--gold);transition:width .55s var(--ease2)}
+.ws-old.struck::after{width:100%}
+.ws-new{color:var(--gold-soft);opacity:0;transform:translateY(8px);display:inline-block;
+  transition:opacity .5s .74s var(--ease2),transform .5s .74s var(--ease2)}
+.ws-new.v{opacity:1;transform:none}
+
+/* ============ ABOUT / IMAGEM COM PROPÓSITO ============ */
+.about{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+.about-tx h2{font-size:clamp(2.6rem,4.8vw,4.4rem);letter-spacing:-.035em;margin-bottom:1.6rem;font-weight:500}
+.about-tx h2 em{color:var(--gold-soft)}
+.about-img{position:relative;border-radius:4px;overflow:hidden;box-shadow:var(--shadow)}
+.about-img img{width:100%;aspect-ratio:4/5;object-fit:cover;will-change:transform}
+.about-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--br)}
+.about-badge{position:absolute;bottom:1.2rem;left:1.2rem;background:rgba(14,18,48,.7);backdrop-filter:blur(10px);
+  border:1px solid var(--br);border-radius:100px;padding:.55rem 1.1rem;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+
+/* ============ GOOGLE PROVOCATION ============ */
+.google{background:var(--navy-3);text-align:center}
+.google .big{font-size:clamp(2.7rem,5.4vw,5.4rem);letter-spacing:-.035em;line-height:1.06;max-width:22ch;margin:0 auto;font-weight:500}
+.google .big em{color:var(--gold-soft)}
+.gbar{max-width:620px;margin:2.6rem auto 0;display:flex;align-items:center;gap:.8rem;background:rgba(241,238,230,.06);border:1px solid var(--br);border-radius:100px;padding:.9rem 1.4rem;text-align:left}
+.gbar svg{width:20px;height:20px;stroke:var(--muted);fill:none;stroke-width:1.7;flex-shrink:0}
+.gbar .ph{color:var(--muted);font-size:1.12rem}
+.gbar .cursor{width:2px;height:1.1em;background:var(--gold);animation:blink 1.1s steps(1) infinite;margin-left:-.2rem}
+@keyframes blink{50%{opacity:0}}
+
+/* ============ JORNADA (timeline vertical com progresso) ============ */
+.journey .j-head{max-width:52ch;margin-bottom:clamp(3rem,6vw,5rem)}
+.journey h2{font-size:clamp(2.6rem,5vw,4.7rem);letter-spacing:-.035em;font-weight:500}
+.tl{position:relative;padding-left:clamp(2.5rem,6vw,5rem)}
+/* rail + fill (fill scrubs with scroll via GSAP; fallback = full) */
+.tl-rail{position:absolute;left:clamp(.5rem,1.4vw,1rem);top:.6rem;bottom:.6rem;width:2px;background:var(--br);border-radius:2px;overflow:hidden}
+.tl-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--gold),var(--gold-soft));border-radius:2px}
+.tl-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(2.5rem,5vw,4rem)}
+.tl-step{position:relative}
+.tl-dot{position:absolute;left:calc(-1 * clamp(2.5rem,6vw,5rem) + clamp(.5rem,1.4vw,1rem) - 6px);top:.55rem;width:14px;height:14px;border-radius:50%;
+  background:var(--navy);border:2px solid var(--br);transition:border-color .5s var(--ease),background .5s var(--ease),box-shadow .5s;z-index:2}
+.tl-step.rv.v .tl-dot{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 5px rgba(201,162,75,.14)}
+.tl-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:.6rem}
+.tl-body h3{font-family:'Fraunces',serif;font-size:clamp(1.75rem,3.4vw,2.8rem);letter-spacing:-.025em;font-weight:500;margin-bottom:.8rem}
+.tl-body p{color:var(--muted);line-height:1.75;max-width:52ch;font-size:1.12rem;margin-bottom:1.2rem}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tl-tags span{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft);border:1px solid var(--br);border-radius:100px;padding:.32rem .85rem}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--navy-2);overflow:hidden;padding:clamp(2rem,4vw,3.4rem) 0;border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.mq-track{display:flex;width:max-content;gap:0;animation:mqScroll 30s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-item{font-family:'Fraunces',serif;font-size:clamp(2.4rem,7vw,6rem);font-weight:500;letter-spacing:-.05em;line-height:1;white-space:nowrap;color:var(--text);opacity:.14;padding:0 2rem}
+.mq-item em{color:var(--gold);font-style:italic;opacity:1}
+@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ PRODUÇÃO / SERVIÇOS (explorer interativo) ============ */
+.services .s-head{max-width:54ch;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.services h2{font-size:clamp(2.6rem,5vw,4.7rem);letter-spacing:-.035em;font-weight:500}
+.sx{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2.5rem,5vw,4.5rem);align-items:start}
+/* sticky preview */
+.sx-preview{position:sticky;top:6.5rem;aspect-ratio:4/5;border-radius:6px;overflow:hidden;box-shadow:var(--shadow)}
+.sx-img{position:absolute;inset:0;opacity:0;transform:scale(1.06);transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+.sx-img.act{opacity:1;transform:scale(1)}
+.sx-img img{width:100%;height:100%;object-fit:cover}
+.sx-preview::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--br);pointer-events:none}
+.sx-preview-tag{position:absolute;left:0;right:0;bottom:0;padding:1.5rem 1.6rem;z-index:2;
+  background:linear-gradient(transparent,rgba(10,12,32,.92))}
+.sx-preview-tag .ey{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);display:block;margin-bottom:.35rem}
+.sx-preview-tag .lbl{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--cream);font-style:italic;display:block}
+/* list */
+.sx-list{display:flex;flex-direction:column}
+.sx-item{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1rem,2.2vw,1.6rem);align-items:start;text-align:left;
+  background:none;border:0;border-top:1px solid var(--br);padding:clamp(1.3rem,2.4vw,1.7rem) 0;cursor:pointer;width:100%;color:inherit;font-family:inherit}
+.sx-list .sx-item:last-child{border-bottom:1px solid var(--br)}
+.sx-num{font-family:'Fraunces',serif;font-size:clamp(1.1rem,1.8vw,1.5rem);font-style:italic;color:var(--gold);line-height:1.3;min-width:2.4ch;transition:color .3s}
+.sx-main{display:flex;flex-direction:column}
+.sx-name{font-family:'Fraunces',serif;font-size:clamp(1.45rem,2.8vw,2.15rem);letter-spacing:-.02em;font-weight:500;color:var(--muted);transition:color .35s var(--ease),transform .4s var(--ease);line-height:1.15}
+.sx-desc{max-height:0;overflow:hidden;opacity:0;color:var(--muted);line-height:1.7;font-size:1.12rem;max-width:46ch;
+  transition:max-height .55s var(--ease),opacity .45s var(--ease),margin .4s}
+.sx-item.act .sx-name{color:var(--text);transform:translateX(4px)}
+.sx-item.act .sx-num{color:var(--gold-soft)}
+.sx-item.act .sx-desc{max-height:180px;opacity:1;margin-top:.7rem}
+.sx-item:not(.act):hover .sx-name{color:var(--cream)}
+.sx-plus{width:26px;height:26px;position:relative;flex-shrink:0;margin-top:.35rem;opacity:.45;transition:opacity .3s}
+.sx-plus::before,.sx-plus::after{content:"";position:absolute;top:50%;left:50%;width:13px;height:1.5px;background:var(--gold);transform:translate(-50%,-50%);transition:transform .4s var(--ease)}
+.sx-plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.sx-item.act .sx-plus{opacity:1}
+.sx-item.act .sx-plus::after{transform:translate(-50%,-50%) rotate(0)}
+@media(max-width:860px){
+  .sx{grid-template-columns:1fr;gap:0}
+  .sx-preview{position:relative;top:0;aspect-ratio:16/11;margin-bottom:2rem;order:-1}
+}
+
+/* ============ PORTFÓLIO BENTO ============ */
+.folio .f-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.folio h2{font-size:clamp(2.6rem,5vw,4.7rem);letter-spacing:-.035em;font-weight:500;max-width:16ch}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.6rem,1.2vw,1rem);grid-auto-flow:dense}
+.tile{position:relative;overflow:hidden;border-radius:3px;background:var(--navy-2);cursor:zoom-in}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter .6s;will-change:transform}
+.tile::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--br);pointer-events:none;transition:box-shadow .4s}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:1rem 1.1rem;
+  background:linear-gradient(transparent,rgba(10,12,32,.85));color:var(--cream);
+  font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s var(--ease)}
+.tile:hover img{transform:scale(1.05)}
+.tile:hover .cap{opacity:1;transform:none}
+.tile:hover::after{box-shadow:inset 0 0 0 1px var(--gold)}
+/* spans */
+.t-lg{grid-column:span 6;grid-row:span 2}
+.t-md{grid-column:span 4;grid-row:span 2}
+.t-sm{grid-column:span 4}
+.t-wide{grid-column:span 8}
+.t-tall{grid-column:span 3;grid-row:span 2}
+.t-4{grid-column:span 4}
+.t-6{grid-column:span 6}
+
+/* ============ REELS ============ */
+.reels .r-head{max-width:50ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.reels h2{font-size:clamp(2.6rem,5vw,4.7rem);letter-spacing:-.035em;font-weight:500}
+.reel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,1.5vw,1.2rem)}
+.reel{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;background:var(--navy-2);cursor:pointer;box-shadow:var(--shadow)}
+.reel img,.reel-vid{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72) saturate(1.05);transition:transform 1s var(--ease),filter .5s}
+.reel::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--br);pointer-events:none}
+.reel:hover img,.reel:hover .reel-vid{transform:scale(1.06);filter:brightness(.85)}
+.reel.playing .reel-vid{filter:none;transform:none}
+.reel.playing .reel-ov{opacity:0;pointer-events:none}
+.reel-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:1.1rem;z-index:2;transition:opacity .4s}
+.reel-tag{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);opacity:.85}
+.reel-play{align-self:center;margin:auto;width:60px;height:60px;border-radius:50%;border:1px solid rgba(255,255,255,.6);
+  background:rgba(14,18,48,.35);backdrop-filter:blur(6px);display:grid;place-items:center;transition:transform .3s var(--ease),background .3s,border-color .3s}
+.reel:hover .reel-play{transform:scale(1.08);background:var(--gold);border-color:var(--gold)}
+.reel-play svg{width:22px;height:22px;fill:var(--cream);margin-left:3px;transition:fill .3s}
+.reel:hover .reel-play svg{fill:var(--navy)}
+.reel-name{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--cream);font-style:italic}
+
+/* ============ DEPOIMENTOS ============ */
+.tst-sec{background:var(--paper);color:var(--ink)}
+.tst-sec h2{font-size:clamp(2.6rem,5vw,4.7rem);letter-spacing:-.035em;color:var(--ink);font-weight:500}
+.tst-head{max-width:54ch;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2rem)}
+.tst-card{background:#fff;border:1px solid var(--br-ink);border-radius:8px;padding:clamp(1.8rem,3vw,2.4rem);display:flex;flex-direction:column;
+  box-shadow:0 22px 50px -34px rgba(21,24,58,.35);transition:transform .5s var(--ease),box-shadow .5s}
+.tst-card:hover{transform:translateY(-5px);box-shadow:0 32px 60px -30px rgba(21,24,58,.4)}
+.tst-stars{display:flex;gap:.2rem;margin-bottom:1.2rem;color:var(--gold)}
+.tst-stars svg{width:16px;height:16px;fill:currentColor}
+.tst-card blockquote{font-size:1.12rem;line-height:1.72;color:#34364d;flex:1}
+.tst-who{display:flex;align-items:center;gap:.9rem;margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--br-ink)}
+.tst-av{width:44px;height:44px;border-radius:50%;background:var(--navy-2);color:var(--gold-soft);display:grid;place-items:center;font-family:'Fraunces',serif;font-size:1.05rem;flex-shrink:0}
+.tst-who .nm{font-weight:600;font-size:1.05rem;color:var(--ink)}
+.tst-who .rl{font-size:.9rem;color:var(--muted-ink)}
+
+/* ============ CTA / CONTATO ============ */
+.contact{position:relative;overflow:hidden}
+.contact-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.contact-bg img{width:100%;height:128%;object-fit:cover;filter:brightness(.34) saturate(1.1);position:absolute;inset:-14% 0 auto 0;will-change:transform}
+.contact-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,18,48,.85),rgba(14,18,48,.94))}
+.contact-in{position:relative;z-index:2}
+.contact .q{font-size:clamp(2.7rem,5.2vw,5.2rem);letter-spacing:-.035em;line-height:1.08;max-width:22ch;font-weight:500}
+.contact .q em{color:var(--gold-soft)}
+.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2.5rem,6vw,5rem);margin-top:clamp(2.5rem,5vw,4rem);align-items:end}
+.contact-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.info-block{display:flex;flex-direction:column;gap:1.6rem}
+.info-item .k{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:.4rem}
+.info-item .val{font-size:1.12rem;line-height:1.6;color:var(--text)}
+.info-item a.val:hover{color:var(--gold)}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--navy-3);padding:clamp(3.5rem,6vw,5rem) 0 2.5rem;border-top:1px solid var(--br)}
+.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--br)}
+.foot-brand img{height:40px;filter:brightness(0) invert(1);margin-bottom:1rem}
+.foot-brand p{color:var(--muted);max-width:32ch;font-size:1.05rem}
+.foot-cols{display:flex;gap:clamp(2.5rem,6vw,5rem);flex-wrap:wrap}
+.foot-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:1.1rem;font-weight:600}
+.foot-col a{display:block;color:var(--muted);font-size:1.02rem;margin-bottom:.7rem;transition:color .2s}
+.foot-col a:hover{color:var(--text)}
+.foot-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-top:2rem;color:var(--muted);font-size:.82rem}
+.foot-bot a:hover{color:var(--gold)}
+
+/* ============ LIGHTBOX ============ */
+.lb{position:fixed;inset:0;z-index:2000;background:rgba(8,10,26,.94);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:clamp(1rem,4vw,3rem);
+  opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.lb.open{opacity:1;pointer-events:auto}
+.lb img{max-width:100%;max-height:88vh;object-fit:contain;border-radius:4px;box-shadow:0 40px 100px -20px rgba(0,0,0,.7);
+  transform:scale(.94);transition:transform .5s var(--ease2)}
+.lb.open img{transform:scale(1)}
+.lb-close{position:absolute;top:clamp(1rem,3vw,2rem);right:clamp(1rem,3vw,2rem);width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--br);background:rgba(255,255,255,.05);color:var(--text);cursor:pointer;display:grid;place-items:center;font-size:1.3rem;transition:background .25s,transform .25s}
+.lb-close:hover{background:rgba(255,255,255,.12);transform:rotate(90deg)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--br);
+  background:rgba(255,255,255,.05);color:var(--text);cursor:pointer;display:grid;place-items:center;transition:background .25s}
+.lb-nav:hover{background:rgba(201,162,75,.9);color:var(--navy)}
+.lb-prev{left:clamp(1rem,3vw,2rem)}.lb-next{right:clamp(1rem,3vw,2rem)}
+.lb-nav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .t-lg{grid-column:span 8}.t-md{grid-column:span 4}.t-tall{grid-column:span 4}
+  .t-sm,.t-4{grid-column:span 4}.t-wide{grid-column:span 12}.t-6{grid-column:span 6}
+  .reel-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:1080px){
+  .nav-links{display:none}.burger{display:flex}
+  .hero-meta{display:none}
+}
+@media(max-width:860px){
+  .mani-grid,.about,.svc,.contact-grid{grid-template-columns:1fr}
+  .svc:nth-child(even) .svc-media{order:0}
+  .about-img{order:-1}
+  .tst-grid{grid-template-columns:1fr}
+  .foot-top{flex-direction:column}
+}
+@media(max-width:560px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .t-lg,.t-md,.t-sm,.t-wide,.t-tall,.t-4,.t-6{grid-column:span 2;grid-row:auto}
+  .reel-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-cta .btn{flex:1;justify-content:center}
+  .btn{width:auto}
+  .contact-cta .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .hero-bg,.cine img,.about-img img,[data-plx]{transform:none!important}
+  .hero-in{transform:none!important;opacity:1!important}
+}
+body.no-grain::before{display:none!important}
+
+</style>
+</helmet>
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand" aria-label="Soho Brand Health, início"><img src="assets/img00.png" alt="Soho Brand Health"></a>
+    <div class="nav-links">
+      <a class="lk" href="#jornada">Jornada</a>
+      <a class="lk" href="#producao">Produção</a>
+      <a class="lk" href="#portfolio">Portfólio</a>
+      <a class="lk" href="#depoimentos">Depoimentos</a>
+      <a class="lk" href="#contato">Contato</a>
+      <a class="btn btn-gold nav-cta" href="https://wa.me/5561982355196" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#jornada">Jornada</a>
+  <a href="#producao">Produção</a>
+  <a href="#portfolio">Portfólio</a>
+  <a href="#depoimentos">Depoimentos</a>
+  <a href="#contato">Contato</a>
+  <a class="btn btn-gold" href="https://wa.me/5561982355196" target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-bg" id="heroBg"><img src="assets/img01.webp" alt="Médico em retrato editorial, luz cinematográfica, registrado pela Soho Brand Health"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-meta">Brasília / DF<br>Fotografia &amp; Vídeo autorais</div>
+  <div class="hero-in">
+    <span class="eyebrow rv v">Soho Brand Health</span>
+    <h1 class="rv v" data-d="1">Excelência se vê <em>antes</em> de se comprovar.</h1>
+    <div class="hero-rot rv v" data-d="2">
+      <span>Uma imagem que transmite</span>
+      <span class="rot-wrap"><span class="rot-word st-vis" id="rotWord">autoridade</span></span>
+    </div>
+    <div class="hero-cta rv v" data-d="3">
+      <a class="btn btn-gold" href="https://wa.me/5561982355196" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"></path><path d="M8.5 8.5c0 3 2 5 5 5"></path></svg>
+        Iniciar meu projeto
+      </a>
+      <a class="btn btn-ghost" href="#portfolio">Ver o portfólio</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
+</header>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="tk-track">
+    <span class="tk-item">Fotografia Institucional</span><span class="tk-sep"></span>
+    <span class="tk-item">Conteúdo para Redes</span><span class="tk-sep"></span>
+    <span class="tk-item">Vídeo Institucional</span><span class="tk-sep"></span>
+    <span class="tk-item">Retrato de Autoridade</span><span class="tk-sep"></span>
+    <span class="tk-item">Clínicas &amp; Consultórios</span><span class="tk-sep"></span>
+    <span class="tk-item">Bastidores da Rotina</span><span class="tk-sep"></span>
+    <!-- dup -->
+    <span class="tk-item">Fotografia Institucional</span><span class="tk-sep"></span>
+    <span class="tk-item">Conteúdo para Redes</span><span class="tk-sep"></span>
+    <span class="tk-item">Vídeo Institucional</span><span class="tk-sep"></span>
+    <span class="tk-item">Retrato de Autoridade</span><span class="tk-sep"></span>
+    <span class="tk-item">Clínicas &amp; Consultórios</span><span class="tk-sep"></span>
+    <span class="tk-item">Bastidores da Rotina</span><span class="tk-sep"></span>
+  </div>
+</div>
+
+<!-- ===== MANIFESTO ===== -->
+<section class="sec">
+  <div class="wrap manifesto">
+    <span class="eyebrow rv">O ponto cego da sua reputação</span>
+    <h2 class="big wr">O padrão de excelência que você aplica ao seu trabalho merece estar presente também em <em>como ele é percebido.</em></h2>
+    <div class="mani-grid">
+      <div class="rv" data-d="2">
+        <p class="lead">Antes de marcar uma consulta, <span class="hl">o paciente já visitou o seu perfil</span>, e, muitas vezes, o seu site. Nesse momento, ele não avalia só o seu diploma: avalia a percepção que a sua imagem transmite. Quando essa imagem não está à altura do seu atendimento, a dúvida já foi plantada, antes mesmo do primeiro “bom dia”.</p>
+      </div>
+      <blockquote class="mani-quote rv" data-d="3">
+        <p>“Leva 20 anos para construir uma reputação e cinco minutos para arruiná-la.”</p>
+        <div class="who">Warren Buffett</div>
+      </blockquote>
+    </div>
+    <p class="lead rv" data-d="4" style="margin-top:clamp(2rem,4vw,3rem)">A sua reputação clínica funciona da mesma forma: foi construída ao longo de anos. <span class="hl">A imagem que a representa online não pode dizer o contrário.</span></p>
+  </div>
+</section>
+
+<!-- ===== CINEMATIC BREAK 1 ===== -->
+<div class="cine">
+  <img src="assets/img08.webp" alt="Retrato editorial de profissional de saúde em fundo escuro" data-plx="90">
+  <div class="cine-ov">
+    <p class="cine-tx">Se a sua imagem fosse a única prova da sua competência, <em>ela seria suficiente?</em></p>
+  </div>
+</div>
+
+<!-- ===== WORD SWAP (com fundo shader NeuroNoise) ===== -->
+<section class="sec swap-sec">
+  <div class="shader-host" id="shaderHost" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow rv" style="display:block;text-align:center;margin-bottom:1.6rem">A diferença que o paciente percebe</span>
+    <p class="swap">Fotos de celular passam <span class="ws-old" id="wsOld">amadorismo</span>.<br>Uma imagem autoral passa <span class="ws-new" id="wsNew">autoridade.</span></p>
+  </div>
+</section>
+
+<!-- ===== ABOUT / IMAGEM COM PROPÓSITO ===== -->
+<section class="sec">
+  <div class="wrap about">
+    <div class="about-tx">
+      <span class="eyebrow rv">Imagem com propósito</span>
+      <h2 class="wr">A Soho Brand Health existe <em>para esse detalhe.</em></h2>
+      <p class="lead rv" data-d="2">Um perfil desatualizado, com fotos amadoras, é a primeira coisa que separa você do concorrente que investiu em imagem. Fotografia e vídeo autorais, pensados para profissionais que já entendem o valor da própria reputação.</p>
+      <p class="lead rv" data-d="3" style="margin-top:1.4rem">Cada projeto nasce de um estudo real: <span class="hl">espaço, rotina e estilo do cliente.</span> O resultado é uma identidade própria, com direção de imagem e estratégias personalizadas.</p>
+    </div>
+    <div class="about-img rv" data-d="2">
+      <img src="assets/img14.webp" alt="Retrato de autoridade feito em estúdio pela Soho Brand Health" data-plx="-38" data-plx-scale="0.1">
+      <span class="about-badge">Direção de imagem própria</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GOOGLE PROVOCATION ===== -->
+<section class="sec google">
+  <div class="wrap">
+    <span class="eyebrow rv">Um teste honesto</span>
+    <h2 class="big wr">Pesquise o seu nome no Google <em>agora.</em></h2>
+    <p class="lead rv" data-d="2" style="margin:1.6rem auto 0;text-align:center;color:var(--muted)">As fotos e os vídeos que aparecem hoje representam o nível do atendimento que você entrega?</p>
+    <div class="gbar rv" data-d="3" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+      <span class="ph" id="gType"></span><span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JORNADA ===== -->
+<section class="sec journey" id="jornada">
+  <div class="wrap">
+    <div class="j-head">
+      <span class="eyebrow rv">Como funciona</span>
+      <h2 class="wr">A sua jornada, do briefing à <em>entrega final.</em></h2>
+    </div>
+    <!-- vertical timeline: progress line fills as you scroll -->
+    <div class="tl" id="timeline">
+      <div class="tl-rail"><span class="tl-fill" id="tlFill"></span></div>
+      <ol class="tl-steps">
+        <li class="tl-step rv">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-body">
+            <span class="tl-num">Etapa I</span>
+            <h3>Briefing</h3>
+            <p>Começamos por uma conversa. Entendemos o seu momento, o público que você quer atrair e a percepção que a sua imagem precisa transmitir, e reunimos referências para alinhar o olhar.</p>
+            <div class="tl-tags"><span>Conversa</span><span>Objetivos</span><span>Referências</span></div>
+          </div>
+        </li>
+        <li class="tl-step rv">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-body">
+            <span class="tl-num">Etapa II</span>
+            <h3>Planejamento</h3>
+            <p>Visitamos o espaço, montamos o moodboard e definimos datas e horários. Cada detalhe é pensado antes do dia da captação, para que nada seja improvisado.</p>
+            <div class="tl-tags"><span>Visita técnica</span><span>Moodboard</span><span>Datas e horários</span></div>
+          </div>
+        </li>
+        <li class="tl-step rv">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-body">
+            <span class="tl-num">Etapa III</span>
+            <h3>Produção</h3>
+            <p>O dia da captação. Conduzimos a direção de imagem, a luz e a montagem de cada cena, orientando pose, expressão e enquadramento para transmitir presença e confiança.</p>
+            <div class="tl-tags"><span>Captação</span><span>Direção de imagem</span><span>Montagem de cena</span></div>
+          </div>
+        </li>
+        <li class="tl-step rv">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-body">
+            <span class="tl-num">Etapa IV</span>
+            <h3>Edição</h3>
+            <p>Selecionamos as melhores imagens, organizamos por uso e aplicamos o tratamento editorial. Você acompanha e pode pedir ajustes finos até o resultado ficar no ponto.</p>
+            <div class="tl-tags"><span>Seleção</span><span>Tratamento</span><span>Ajustes finos</span></div>
+          </div>
+        </li>
+        <li class="tl-step rv">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-body">
+            <span class="tl-num">Etapa V</span>
+            <h3>Entrega</h3>
+            <p>Após a sua aprovação, entregamos o material final nos formatos certos para cada canal, site, Google, Instagram e materiais impressos, pronto para usar.</p>
+            <div class="tl-tags"><span>Aprovação</span><span>Formatos por canal</span><span>Material final</span></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span class="mq-item">Imagem com <em>propósito</em>&nbsp;·&nbsp;</span>
+    <span class="mq-item">Imagem com <em>propósito</em>&nbsp;·&nbsp;</span>
+    <span class="mq-item">Imagem com <em>propósito</em>&nbsp;·&nbsp;</span>
+    <span class="mq-item">Imagem com <em>propósito</em>&nbsp;·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ===== PRODUÇÃO / SERVIÇOS (explorer interativo) ===== -->
+<section class="sec services" id="producao">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="eyebrow rv">Nossas frentes de produção</span>
+      <h2 class="wr">Não é preciso saber exatamente do que você precisa.</h2>
+      <p class="lead rv" data-d="2" style="margin-top:1.4rem">No briefing inicial, ajudamos a definir a combinação que faz mais sentido para o seu momento. <span class="hl">Passe por cada frente para ver como funciona.</span></p>
+    </div>
+
+    <div class="sx" id="svcExplorer">
+      <!-- sticky preview that crossfades -->
+      <div class="sx-preview rv">
+        <div class="sx-img act" data-svc="0"><img src="assets/new/clinica15.webp" alt="Ambiente de clínica, fotografia institucional do espaço" loading="lazy"></div>
+        <div class="sx-img" data-svc="1"><img src="assets/new/samuel04.webp" alt="Fotografia para redes sociais" loading="lazy"></div>
+        <div class="sx-img" data-svc="2"><img src="assets/new/rafael05.webp" alt="Vídeo institucional do profissional e do espaço" loading="lazy"></div>
+        <div class="sx-img" data-svc="3"><img src="assets/new/maria07.webp" alt="Cobertura de bastidores e rotina" loading="lazy"></div>
+        <div class="sx-img" data-svc="4"><img src="assets/new/rafael03.webp" alt="Pacote para clínicas e escritórios com múltiplos profissionais" loading="lazy"></div>
+        <div class="sx-img" data-svc="5"><img src="assets/new/laura02.webp" alt="Ensaio de autoridade em estúdio" loading="lazy"></div>
+        <div class="sx-preview-tag"><span class="ey" id="sxTagEy">Frente 01</span><span class="lbl" id="sxTagLbl">Fotografia institucional</span></div>
+      </div>
+
+      <!-- interactive list -->
+      <div class="sx-list rv" data-d="1" id="sxList">
+        <button class="sx-item act" data-svc="0" aria-expanded="true">
+          <span class="sx-num">01</span>
+          <span class="sx-main"><span class="sx-name">Fotografia institucional</span><span class="sx-desc">Fotos do profissional e do espaço de atendimento, com direção de imagem, para site, Google e materiais impressos.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+        <button class="sx-item" data-svc="1" aria-expanded="false">
+          <span class="sx-num">02</span>
+          <span class="sx-main"><span class="sx-name">Fotografia para redes sociais</span><span class="sx-desc">Conjunto de imagens pensado para o formato e a frequência de postagem do Instagram, consistência visual em cada publicação.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+        <button class="sx-item" data-svc="2" aria-expanded="false">
+          <span class="sx-num">03</span>
+          <span class="sx-main"><span class="sx-name">Vídeo institucional</span><span class="sx-desc">Vídeo curto de apresentação do profissional e do espaço, para site e redes, com direção de roteiro e narração quando necessário.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+        <button class="sx-item" data-svc="3" aria-expanded="false">
+          <span class="sx-num">04</span>
+          <span class="sx-main"><span class="sx-name">Cobertura de bastidores &amp; rotina</span><span class="sx-desc">Registro do dia a dia de atendimento, com autorização quando aplicável, para humanizar a comunicação da sua marca.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+        <button class="sx-item" data-svc="4" aria-expanded="false">
+          <span class="sx-num">05</span>
+          <span class="sx-main"><span class="sx-name">Pacote para clínicas e escritórios</span><span class="sx-desc">Produção organizada para fotografar múltiplos profissionais em um único dia, com padronização visual entre todos os perfis da equipe.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+        <button class="sx-item" data-svc="5" aria-expanded="false">
+          <span class="sx-num">06</span>
+          <span class="sx-main"><span class="sx-name">Ensaio de autoridade</span><span class="sx-desc">Retratos individuais em estúdio ou na própria empresa, com direção focada em transmitir presença e confiança, o retrato que sustenta a sua reputação.</span></span>
+          <span class="sx-plus" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFÓLIO ===== -->
+<section class="sec folio" id="portfolio">
+  <div class="wrap">
+    <div class="f-head">
+      <div>
+        <span class="eyebrow rv">Espaços e pessoas que fotografamos</span>
+        <h2 class="wr">Clínicas, consultórios e escritórios com <em>direção própria.</em></h2>
+      </div>
+      <p class="lead rv" data-d="2" style="max-width:34ch">Cada frame é um estudo de luz, espaço e presença. Toque em uma imagem para ampliar.</p>
+    </div>
+    <div class="bento" id="bento">
+      <div class="tile t-lg"><img src="assets/new/clinica08.webp" alt="Recepção de clínica com sofá curvo e direção de espaço" loading="lazy"><span class="cap">Recepção · direção de espaço</span></div>
+      <div class="tile t-md"><img src="assets/new/maria02.webp" alt="Retrato institucional de profissional de saúde" loading="lazy"><span class="cap">Retrato institucional</span></div>
+      <div class="tile t-md"><img src="assets/new/clinica16.webp" alt="Ambiente de acolhimento com poltronas" loading="lazy"><span class="cap">Ambiente de acolhimento</span></div>
+      <div class="tile t-wide"><img src="assets/new/rafael02.webp" alt="Profissional em seu escritório" loading="lazy"><span class="cap">Presença &amp; confiança</span></div>
+      <div class="tile t-4"><img src="assets/new/clinica21.webp" alt="Detalhe de arte e decoração de consultório" loading="lazy"><span class="cap">Direção de arte</span></div>
+      <div class="tile t-4"><img src="assets/new/samuel02.webp" alt="Retrato de autoridade em estúdio" loading="lazy"><span class="cap">Retrato de autoridade</span></div>
+      <div class="tile t-4"><img src="assets/new/clinica10.webp" alt="Entrada de consultório com porta de vidro" loading="lazy"><span class="cap">Entrada · consultório</span></div>
+      <div class="tile t-6"><img src="assets/new/rafael08.webp" alt="Equipe de profissionais de saúde" loading="lazy"><span class="cap">Equipe &amp; consultório</span></div>
+      <div class="tile t-tall"><img src="assets/new/clinica12.webp" alt="Corredor cinematográfico com luz linear" loading="lazy"><span class="cap">Corredor cinematográfico</span></div>
+      <div class="tile t-4"><img src="assets/new/maria04.webp" alt="Retrato de profissional de saúde" loading="lazy"><span class="cap">Retrato natural</span></div>
+      <div class="tile t-4"><img src="assets/new/clinica09.webp" alt="Parede de identidade e direção de espaço" loading="lazy"><span class="cap">Direção de espaço</span></div>
+      <div class="tile t-4"><img src="assets/new/samuel05.webp" alt="Retrato masculino em estúdio" loading="lazy"><span class="cap">Estúdio · low-key</span></div>
+      <div class="tile t-6"><img src="assets/new/clinica17.webp" alt="Sala de espera premium com poltronas" loading="lazy"><span class="cap">Sala de espera premium</span></div>
+      <div class="tile t-6"><img src="assets/new/laura03.webp" alt="Retrato editorial de profissional" loading="lazy"><span class="cap">Editorial cinematográfico</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REELS ===== -->
+<section class="sec reels">
+  <div class="wrap">
+    <div class="r-head">
+      <span class="eyebrow rv">Vídeo em movimento</span>
+      <h2 class="wr">Reels que apresentam quem você <em>realmente é.</em></h2>
+    </div>
+    <p class="lead rv" data-d="2" style="margin:-1rem 0 clamp(2rem,4vw,3rem);color:var(--muted)">Toque para ouvir. Vídeos autorais gravados para profissionais de saúde.</p>
+    <div class="reel-grid">
+      <div class="reel rv" data-reel="1">
+        <video class="reel-vid" src="videos/reel1.mp4" poster="videos/reel1.jpg" muted="" loop="" playsinline="" preload="none"></video>
+        <div class="reel-ov"><span class="reel-tag">Vídeo · 9:16</span><span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span><span class="reel-name">Apresentação</span></div>
+      </div>
+      <div class="reel rv" data-d="1" data-reel="2">
+        <video class="reel-vid" src="videos/reel2.mp4" poster="videos/reel2.jpg" muted="" loop="" playsinline="" preload="none"></video>
+        <div class="reel-ov"><span class="reel-tag">Vídeo · 9:16</span><span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span><span class="reel-name">Na clínica</span></div>
+      </div>
+      <div class="reel rv" data-d="2" data-reel="3">
+        <video class="reel-vid" src="videos/reel3.mp4" poster="videos/reel3.jpg" muted="" loop="" playsinline="" preload="none"></video>
+        <div class="reel-ov"><span class="reel-tag">Vídeo · 9:16</span><span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span><span class="reel-name">Depoimento em vídeo</span></div>
+      </div>
+      <div class="reel rv" data-d="3" data-reel="4">
+        <video class="reel-vid" src="videos/reel4.mp4" poster="videos/reel4.jpg" muted="" loop="" playsinline="" preload="none"></video>
+        <div class="reel-ov"><span class="reel-tag">Vídeo · 9:16</span><span class="reel-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span><span class="reel-name">Consultório</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="sec tst-sec" id="depoimentos">
+  <div class="wrap">
+    <div class="tst-head">
+      <span class="eyebrow on-light rv">Histórias reais de nossos parceiros</span>
+      <h2 class="wr">Profissionais atualizaram a própria imagem, e passaram a atrair clientes mais alinhados ao seu padrão.</h2>
+    </div>
+    <div class="tst-grid">
+      <article class="tst-card rv" data-tilt="">
+        <div class="tst-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg></div>
+        <blockquote>“Desde o início percebi o profissionalismo e como o Giovani e a Patricy trabalham com eficiência e extrema qualidade. Realizei fotos profissionais e ficaram incríveis. Em breve, retornarei.”</blockquote>
+        <div class="tst-who"><span class="tst-av">M</span><div><div class="nm">Dra. Maria Luisa</div><div class="rl">Pediatra</div></div></div>
+      </article>
+      <article class="tst-card rv" data-d="1" data-tilt="">
+        <div class="tst-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg></div>
+        <blockquote>“Experiência excelente do primeiro contato à entrega. Fiquei impressionado com a qualidade, o resultado superou minhas expectativas. Dá para perceber o cuidado nos detalhes e o compromisso com a excelência. Recomendo com total confiança.”</blockquote>
+        <div class="tst-who"><span class="tst-av">S</span><div><div class="nm">Dr. Samuel Henrique</div><div class="rl">Médico</div></div></div>
+      </article>
+      <article class="tst-card rv" data-d="2" data-tilt="">
+        <div class="tst-stars" aria-label="5 de 5 estrelas"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.7 1.6 6.9L12 17.8 5.7 20.7l1.6-6.9L2 9.1l7-.6z"></path></svg></div>
+        <blockquote>“Ótimos profissionais! A fotografia superou minhas expectativas. O estúdio é bonito, bem equipado e organizado, o que torna toda a experiência ainda mais agradável. Amei o resultado e recomendo de olhos fechados.”</blockquote>
+        <div class="tst-who"><span class="tst-av">A</span><div><div class="nm">Amanda Botelho</div><div class="rl">Psicóloga</div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section class="sec contact" id="contato">
+  <div class="contact-bg"><img src="assets/img16.webp" alt="Imagem de fundo da seção de contato" data-plx="70" data-plx-scale="0.12"></div>
+  <div class="wrap contact-in">
+    <span class="eyebrow rv">Vamos construir a sua imagem</span>
+    <h2 class="q wr">Sua próxima consulta pode começar <em>antes do primeiro contato.</em></h2>
+    <div class="contact-grid">
+      <div class="rv" data-d="2">
+        <p class="lead">Conte o seu momento. No briefing inicial desenhamos a combinação de fotografia e vídeo à altura do seu padrão de atendimento.</p>
+        <div class="contact-cta">
+          <a class="btn btn-gold" href="https://wa.me/5561982355196" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"></path><path d="M8.5 8.5c0 3 2 5 5 5"></path></svg>
+            Falar no WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="https://instagram.com/sohobrandhealth" target="_blank" rel="noopener">@sohobrandhealth</a>
+        </div>
+      </div>
+      <div class="info-block rv" data-d="3">
+        <div class="info-item"><div class="k">Onde estamos</div><a class="val" href="https://maps.google.com/?q=Connect+Towers+Águas+Claras+Brasília" target="_blank" rel="noopener">Ed. Connect Towers, Sala 819<br>QS 01, Águas Claras · Brasília / DF<br>71950-550</a></div>
+        <div class="info-item"><div class="k">Horário de funcionamento</div><div class="val">Segunda a sábado · 09h às 19h</div></div>
+        <div class="info-item"><div class="k">WhatsApp</div><a class="val" href="https://wa.me/5561982355196" target="_blank" rel="noopener">+55 (61) 98235-5196</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="assets/img00.png" alt="Soho Brand Health">
+        <p>Fotografia e vídeo autorais para profissionais de saúde que entendem o valor da própria reputação.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Navegar</h4>
+          <a href="#jornada">Jornada</a>
+          <a href="#producao">Produção</a>
+          <a href="#portfolio">Portfólio</a>
+          <a href="#depoimentos">Depoimentos</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contato</h4>
+          <a href="https://wa.me/5561982355196" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://instagram.com/sohobrandhealth" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://maps.google.com/?q=Connect+Towers+Águas+Claras" target="_blank" rel="noopener">Brasília · DF</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span class="tnum">2026</span> Soho Brand Health · Imagem com propósito</span>
+      <a href="https://wa.me/5561982355196" target="_blank" rel="noopener">Iniciar meu projeto →</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Fechar"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg></button>
+  <img id="lbImg" alt="" width="4000" height="6000" style="width: 4000px; height: auto; aspect-ratio: 4000 / 6000" src="./maria-luisa---soho-studio-4-msoz8eh0-9j4j.jpg">
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Próxima"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:900},&quot;videoBase&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vídeos&quot;,&quot;label&quot;:&quot;URL-base dos vídeos (vazio = pasta local ./videos/)&quot;},&quot;heroWords&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;autoridade, confiança, cuidado, propósito, excelência&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Textos&quot;,&quot;label&quot;:&quot;Palavras rotativas do hero (separe por vírgula)&quot;},&quot;accentGold&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#c9a24b&quot;,&quot;options&quot;:[&quot;#c9a24b&quot;,&quot;#c9b78a&quot;,&quot;#b8862f&quot;,&quot;#d4b25e&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Marca&quot;,&quot;label&quot;:&quot;Dourado (accent)&quot;},&quot;whatsappUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://wa.me/5561982355196&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;,&quot;label&quot;:&quot;Link do WhatsApp&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://instagram.com/sohobrandhealth&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;,&quot;label&quot;:&quot;Link do Instagram&quot;},&quot;showGrain&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Estilo&quot;,&quot;label&quot;:&quot;Textura de grão&quot;}}">
+class Component extends DCLogic {
+  componentDidMount(){
+    "use strict";
+    var GSAP = window.gsap && window.ScrollTrigger;
+    if(GSAP){ try{ gsap.registerPlugin(ScrollTrigger); }catch(e){ GSAP=false; } }
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---- NAV solid on scroll ---- */
+    var nav = document.getElementById('nav');
+    function onScrollNav(){ if(nav) nav.classList.toggle('solid', window.scrollY > 40); }
+    onScrollNav();
+
+    /* ---- Mobile menu ---- */
+    var burger = document.getElementById('burger'), mm = document.getElementById('mobileMenu');
+    function toggleMenu(open){
+      mm.classList.toggle('open', open);
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open ? 'true':'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    if(burger && mm){
+      burger.addEventListener('click', function(){ toggleMenu(!mm.classList.contains('open')); });
+      mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
+    }
+
+    /* ---- In-page photo swap (no edit mode needed) ---- */
+    (function(){
+      var imgs = [].slice.call(document.querySelectorAll('.hero-bg img, .cine img, .about-img img, .sx-img, #bento .tile img, .contact-bg img'));
+      if(!imgs.length) return;
+      var input = document.createElement('input');
+      input.type='file'; input.accept='image/*'; input.style.display='none';
+      document.body.appendChild(input);
+      var active=null;
+      input.addEventListener('change', function(){
+        var file=input.files && input.files[0]; if(!file||!active) return;
+        var rd=new FileReader();
+        rd.onload=function(){
+          active.src=rd.result;
+          try{ localStorage.setItem('soho-photo-'+active.getAttribute('data-pk'), rd.result); }catch(e){}
+          if(window.gsap && window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
+        };
+        rd.readAsDataURL(file);
+        input.value='';
+      });
+      imgs.forEach(function(img,i){
+        var key='k'+i; img.setAttribute('data-pk',key);
+        try{ var saved=localStorage.getItem('soho-photo-'+key); if(saved) img.src=saved; }catch(e){}
+        var host=img.parentElement;
+        if(getComputedStyle(host).position==='static') host.style.position='relative';
+        host.classList.add('photo-swap-host');
+        var btn=document.createElement('button');
+        btn.type='button'; btn.className='photo-swap-btn';
+        btn.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L18 7h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"></path><circle cx="12" cy="13" r="3.2"></circle></svg><span>Trocar foto</span>';
+        btn.addEventListener('click', function(e){ e.stopPropagation(); e.preventDefault(); active=img; input.click(); });
+        host.appendChild(btn);
+      });
+    })();
+
+    /* ---- Scroll reveal (fail-safe) ---- */
+    var revEls = [].slice.call(document.querySelectorAll('.rv:not(.v)'));
+    function reveal(el){ el.classList.add('v'); }
+    if('IntersectionObserver' in window){
+      var revObs = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ reveal(e.target); revObs.unobserve(e.target); } });
+      }, {threshold:0, rootMargin:'0px 0px -6% 0px'});
+      revEls.forEach(function(el){ revObs.observe(el); });
+      var sweep = function(){
+        var vh = window.innerHeight;
+        revEls.forEach(function(el){
+          if(el.classList.contains('v')) return;
+          var r = el.getBoundingClientRect();
+          if(r.top < vh * 0.94){ reveal(el); revObs.unobserve(el); }
+        });
+      };
+      window.addEventListener('scroll', sweep, {passive:true});
+      window.addEventListener('load', sweep);
+      setTimeout(sweep, 300);
+    } else {
+      revEls.forEach(reveal);
+    }
+    setTimeout(function(){ revEls.forEach(function(el){ if(!el.classList.contains('v')) reveal(el); }); }, 2600);
+
+    /* ---- Heading + line reveals (.wr / .lr), non-destructive, keeps text editable ---- */
+    var softEls = [].slice.call(document.querySelectorAll('.wr, .lr'));
+    if('IntersectionObserver' in window){
+      var softObs = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('v'); softObs.unobserve(e.target); } });
+      }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+      softEls.forEach(function(el){ softObs.observe(el); });
+    } else {
+      softEls.forEach(function(el){ el.classList.add('v'); });
+    }
+    setTimeout(function(){ softEls.forEach(function(el){ if(!el.classList.contains('v')) el.classList.add('v'); }); }, 3000);
+
+    /* ---- Word Rotator ---- */
+    var rot = document.getElementById('rotWord');
+    if(rot && !reduce){
+      var rwords = (this.props && this.props.heroWords ? String(this.props.heroWords) : 'autoridade, confiança, cuidado, propósito, excelência')
+        .split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+      if(!rwords.length) rwords = ['autoridade'];
+      rot.textContent = rwords[0];
+      var ri = 0;
+      setInterval(function(){
+        rot.classList.remove('st-vis'); rot.classList.add('st-exit');
+        ri = (ri+1) % rwords.length;
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          rot.textContent = rwords[ri];
+          rot.classList.remove('st-exit'); rot.classList.add('st-enter');
+          requestAnimationFrame(function(){ rot.classList.remove('st-enter'); rot.classList.add('st-vis'); });
+        });});
+      }, 2600);
+    }
+
+    /* ---- Word Swap strikethrough ---- */
+    var wsOld = document.getElementById('wsOld'), wsNew = document.getElementById('wsNew');
+    if(wsOld && wsNew){
+      new IntersectionObserver(function(es){
+        if(es[0].isIntersecting){
+          wsOld.classList.add('struck');
+          setTimeout(function(){ wsNew.classList.add('v'); }, 740);
+          this.disconnect();
+        }
+      }, {threshold:.6}).observe(wsOld.closest('.swap'));
+    }
+
+    /* ---- Cinematic overlay reveal ---- */
+    document.querySelectorAll('.cine-ov').forEach(function(ov){
+      new IntersectionObserver(function(es){ if(es[0].isIntersecting){ ov.classList.add('v'); this.disconnect(); } }, {threshold:.25}).observe(ov);
+    });
+
+    /* ---- Google typewriter ---- */
+    var gType = document.getElementById('gType');
+    if(gType){
+      var full = 'Dr. ____ · o seu nome aqui';
+      var started = false;
+      new IntersectionObserver(function(es){
+        if(es[0].isIntersecting && !started){
+          started = true;
+          if(reduce){ gType.textContent = full; this.disconnect(); return; }
+          var n = 0;
+          (function type(){ if(n <= full.length){ gType.textContent = full.slice(0,n); n++; setTimeout(type, 70); } })();
+          this.disconnect();
+        }
+      }, {threshold:.5}).observe(gType.closest('.google'));
+    }
+
+    /* ---- Service Explorer ---- */
+    var sxList = document.getElementById('sxList');
+    if(sxList){
+      var sxItems = [].slice.call(sxList.querySelectorAll('.sx-item'));
+      var sxImgs = [].slice.call(document.querySelectorAll('.sx-img'));
+      var sxEy = document.getElementById('sxTagEy'), sxLbl = document.getElementById('sxTagLbl');
+      function sxOpen(idx){
+        sxItems.forEach(function(it,i){ it.classList.toggle('act', i===idx); it.setAttribute('aria-expanded', i===idx?'true':'false'); });
+        sxImgs.forEach(function(im,i){ im.classList.toggle('act', i===idx); });
+        var name = sxItems[idx].querySelector('.sx-name').textContent;
+        if(sxEy) sxEy.textContent = 'Frente ' + ('0'+(idx+1));
+        if(sxLbl) sxLbl.textContent = name;
+      }
+      sxItems.forEach(function(it,i){
+        it.addEventListener('click', function(){ sxOpen(i); });
+        if(window.matchMedia('(hover:hover)').matches){
+          it.addEventListener('mouseenter', function(){ sxOpen(i); });
+        }
+      });
+    }
+
+    /* ---- Jornada timeline fill ---- */
+    var tl = document.getElementById('timeline'), tlFill = document.getElementById('tlFill');
+    function updateTlFill(){
+      if(!tl || !tlFill) return;
+      var r = tl.getBoundingClientRect(), vh = window.innerHeight;
+      var startAt = vh*0.65, endAt = vh*0.45;
+      var p = (startAt - r.top) / ((r.height) - (vh - startAt) + (vh - endAt));
+      p = Math.max(0, Math.min(1, p));
+      tlFill.style.height = (p*100).toFixed(1) + '%';
+    }
+
+    /* ---- Parallax engine ---- */
+    var heroBg = document.getElementById('heroBg');
+    var heroIn = document.querySelector('.hero-in');
+    var plxEls = [].slice.call(document.querySelectorAll('[data-plx]')).map(function(el){
+      return { el: el, speed: parseFloat(el.getAttribute('data-plx')) || 0,
+               scale: el.hasAttribute('data-plx-scale') ? parseFloat(el.getAttribute('data-plx-scale'))||0 : 0 };
+    });
+    var vh = window.innerHeight, ticking = false;
+
+    if(GSAP && !reduce){
+      if(heroBg){
+        gsap.to(heroBg, {yPercent:26, scale:1.2, ease:'none',
+          scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:.4}});
+      }
+      if(heroIn){
+        gsap.to(heroIn, {y:150, opacity:0, ease:'none',
+          scrollTrigger:{trigger:'.hero', start:'top top', end:'70% top', scrub:.4}});
+      }
+      plxEls.forEach(function(o){
+        gsap.fromTo(o.el, Object.assign({y:o.speed}, o.scale?{scale:1+o.scale}:{}),
+          Object.assign({y:-o.speed, ease:'none',
+            scrollTrigger:{trigger:o.el, start:'top bottom', end:'bottom top', scrub:.5}}, {}));
+      });
+      if(tl && tlFill){
+        gsap.to(tlFill, {height:'100%', ease:'none',
+          scrollTrigger:{trigger:tl, start:'top 65%', end:'bottom 55%', scrub:.5}});
+      }
+      window.addEventListener('scroll', function(){ onScrollNav(); }, {passive:true});
+      window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+      document.querySelectorAll('img').forEach(function(im){
+        if(im.complete) return;
+        im.addEventListener('load', function(){ ScrollTrigger.refresh(); }, {once:true});
+      });
+      setTimeout(function(){ ScrollTrigger.refresh(); }, 1200);
+    } else {
+      function parallax(){
+        var y = window.scrollY;
+        if(heroBg && y < vh*1.2){ heroBg.style.transform = 'translate3d(0,'+(y*0.5)+'px,0) scale('+(1.12 + y/vh*0.06)+')'; }
+        if(heroIn && y < vh){
+          heroIn.style.transform = 'translate3d(0,'+(y*0.22)+'px,0)';
+          heroIn.style.opacity = String(Math.max(0, 1 - y/(vh*0.72)));
+        }
+        for(var i=0;i<plxEls.length;i++){
+          var o = plxEls[i], r = o.el.getBoundingClientRect();
+          if(r.bottom < -80 || r.top > vh+80) continue;
+          var mid = r.top + r.height/2;
+          var p = (mid - vh/2) / (vh/2);
+          var ty = p * o.speed;
+          var tf = 'translate3d(0,'+ty.toFixed(1)+'px,0)';
+          if(o.scale) tf += ' scale('+(1 + o.scale).toFixed(3)+')';
+          o.el.style.transform = tf;
+        }
+        updateTlFill();
+        ticking = false;
+      }
+      function reqParallax(){ if(!ticking){ ticking = true; requestAnimationFrame(parallax); } }
+      window.addEventListener('scroll', function(){ onScrollNav(); if(!reduce) reqParallax(); }, {passive:true});
+      window.addEventListener('resize', function(){ vh = window.innerHeight; reqParallax(); }, {passive:true});
+      if(!reduce) parallax(); else if(tlFill) tlFill.style.height='100%';
+    }
+
+    /* ---- Pointer-tilt on cards ---- */
+    if(!reduce && window.matchMedia('(hover:hover)').matches){
+      document.querySelectorAll('[data-tilt]').forEach(function(card){
+        card.addEventListener('mousemove', function(e){
+          var r = card.getBoundingClientRect();
+          var rx = ((e.clientY - r.top)/r.height - .5) * -6;
+          var ry = ((e.clientX - r.left)/r.width - .5) * 6;
+          card.style.transform = 'perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-4px)';
+        });
+        card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+      });
+    }
+
+    /* ---- Lightbox ---- */
+    var tiles = [].slice.call(document.querySelectorAll('#bento .tile'));
+    var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+    var lbClose = document.getElementById('lbClose'), lbPrev = document.getElementById('lbPrev'), lbNext = document.getElementById('lbNext');
+    var cur = 0;
+    function openLb(idx){
+      cur = idx;
+      var img = tiles[idx].querySelector('img');
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('open'); document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+    function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function nav2(d){ cur = (cur + d + tiles.length) % tiles.length; var img = tiles[cur].querySelector('img'); lbImg.src = img.src; lbImg.alt = img.alt; }
+    tiles.forEach(function(t,idx){
+      t.addEventListener('click', function(){ openLb(idx); });
+      t.setAttribute('tabindex','0'); t.setAttribute('role','button'); t.setAttribute('aria-label','Ampliar imagem');
+      t.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLb(idx); } });
+    });
+    if(lb){
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', function(){ nav2(-1); });
+      lbNext.addEventListener('click', function(){ nav2(1); });
+      lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+      document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') closeLb();
+        else if(e.key==='ArrowLeft') nav2(-1);
+        else if(e.key==='ArrowRight') nav2(1);
+      });
+    }
+
+    /* ---- Reels ---- */
+    /* Base de vídeo configurável: use data-video-base no <body> (ou a prop videoBase)
+       para servir os vídeos de outro host (Cloudflare R2/Stream, CDN etc.).
+       Ex.: <body data-video-base="https://cdn.seudominio.com/videos/">
+       Se vazio, usa a pasta local ./videos/ (reel1.mp4 ... reel4.mp4). */
+    var VB = (this.props && this.props.videoBase) || document.body.getAttribute('data-video-base') || '';
+    if(VB && !/\/$/.test(VB)) VB += '/';
+    var reels = [].slice.call(document.querySelectorAll('.reel'));
+    reels.forEach(function(reel){
+      var v = reel.querySelector('.reel-vid');
+      if(!v) return;
+      if(VB){
+        var n = reel.getAttribute('data-reel');
+        v.setAttribute('src', VB + 'reel' + n + '.mp4');
+        if(v.getAttribute('poster')) v.setAttribute('poster', VB + 'reel' + n + '.jpg');
+      }
+      if(!reduce && 'IntersectionObserver' in window){
+        new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if(e.isIntersecting){ v.play().catch(function(){}); }
+            else { if(!reel.classList.contains('playing')) v.pause(); }
+          });
+        }, {threshold:.4}).observe(reel);
+      }
+      reel.addEventListener('click', function(){
+        var on = reel.classList.contains('playing');
+        reels.forEach(function(o){
+          var ov=o.querySelector('.reel-vid'); if(!ov) return;
+          o.classList.remove('playing'); ov.muted=true;
+        });
+        if(!on){
+          reel.classList.add('playing'); v.muted=false; v.currentTime = v.currentTime||0;
+          v.play().catch(function(){});
+        }
+      });
+    });
+
+    /* ---- NeuroNoise shader ---- */
+    (function(){
+      var host = document.getElementById('shaderHost');
+      if(!host) return;
+      if(reduce){ host.classList.add('shader-static'); return; }
+      function hasWebGL(){ try{ return !!document.createElement('canvas').getContext('webgl'); }catch(e){ return false; } }
+      if(!hasWebGL()){ host.classList.add('shader-static'); return; }
+      var COL = { back:[0x0e/255,0x12/255,0x30/255], mid:[0x22/255,0x2a/255,0x60/255], front:[0xc9/255,0xa2/255,0x4b/255] };
+      var canvas=document.createElement('canvas'); canvas.className='shader-canvas'; host.prepend(canvas);
+      var gl=canvas.getContext('webgl',{antialias:false,alpha:false});
+      if(!gl){ canvas.remove(); host.classList.add('shader-static'); return; }
+      var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+      var fs=['precision highp float;','uniform vec2 u_res;uniform float u_t;',
+        'uniform vec3 u_back;uniform vec3 u_mid;uniform vec3 u_front;',
+        'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+        'float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+        ' float a=hash(i),b=hash(i+vec2(1.,0.)),c=hash(i+vec2(0.,1.)),d=hash(i+vec2(1.,1.));',
+        ' return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}',
+        'float fbm(vec2 p){float v=0.,a=.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);',
+        ' for(int i=0;i<5;i++){v+=a*noise(p);p=m*p;a*=.5;}return v;}',
+        'void main(){vec2 uv=(gl_FragCoord.xy-.5*u_res)/min(u_res.x,u_res.y);uv*=1.1;',
+        ' float t=u_t*0.05;',
+        ' vec2 q=vec2(fbm(uv+vec2(0.,t)),fbm(uv+vec2(5.2,1.3-t)));',
+        ' vec2 r=vec2(fbm(uv+2.0*q+vec2(1.7,9.2)+t*.5),fbm(uv+2.0*q+vec2(8.3,2.8)-t*.4));',
+        ' float f=fbm(uv+3.5*r);',
+        ' vec3 col=mix(u_back,u_mid,clamp(f*f*1.6,0.,1.));',
+        ' col=mix(col,u_front,clamp(length(r)*.55,0.,1.)*.5);',
+        ' col=mix(col,u_back,smoothstep(.55,1.15,length(uv))*.6);',
+        ' gl_FragColor=vec4(col,1.);}'].join('\n');
+      function compile(t,s){var sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return gl.getShaderParameter(sh,gl.COMPILE_STATUS)?sh:null;}
+      var v=compile(gl.VERTEX_SHADER,vs), fsh=compile(gl.FRAGMENT_SHADER,fs);
+      if(!v||!fsh){ canvas.remove(); host.classList.add('shader-static'); return; }
+      var prog=gl.createProgram();gl.attachShader(prog,v);gl.attachShader(prog,fsh);gl.linkProgram(prog);
+      if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){ canvas.remove(); host.classList.add('shader-static'); return; }
+      gl.useProgram(prog);
+      var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+      gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+      var loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+      var uRes=gl.getUniformLocation(prog,'u_res'),uT=gl.getUniformLocation(prog,'u_t');
+      gl.uniform3fv(gl.getUniformLocation(prog,'u_back'),COL.back);
+      gl.uniform3fv(gl.getUniformLocation(prog,'u_mid'),COL.mid);
+      gl.uniform3fv(gl.getUniformLocation(prog,'u_front'),COL.front);
+      var dpr=Math.min(window.devicePixelRatio||1,1.5);
+      function resize(){var w=Math.round(host.clientWidth*dpr),h=Math.round(host.clientHeight*dpr);
+        if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+        gl.viewport(0,0,canvas.width,canvas.height);gl.uniform2f(uRes,canvas.width,canvas.height);}
+      try{ new ResizeObserver(resize).observe(host); }catch(e){ window.addEventListener('resize',resize); }
+      resize();
+      host.classList.add('shader-live');
+      var visible=false, raf=0, t0=null;
+      function frame(now){ if(!visible){ raf=0; return; } if(t0===null)t0=now;
+        gl.uniform1f(uT,(now-t0)/1000); gl.drawArrays(gl.TRIANGLES,0,3); raf=requestAnimationFrame(frame); }
+      new IntersectionObserver(function(es){ visible=es[0].isIntersecting; if(visible&&!raf) raf=requestAnimationFrame(frame); },{threshold:0}).observe(host);
+    })();
+
+    this.applyProps();
+  }
+
+  componentDidUpdate(){ this.applyProps(); }
+
+  applyProps(){
+    var p = this.props || {};
+    if(p.accentGold){ document.documentElement.style.setProperty('--gold', p.accentGold); }
+    if(p.whatsappUrl){
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){ a.setAttribute('href', p.whatsappUrl); });
+    }
+    if(p.instagramUrl){
+      document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a){ a.setAttribute('href', p.instagramUrl); });
+    }
+    var grainOn = p.showGrain === undefined ? true : p.showGrain;
+    document.body.classList.toggle('no-grain', !grainOn);
+  }
+
+  renderVals(){ return {}; }
+}
+</script>
+</body>
+</html>
