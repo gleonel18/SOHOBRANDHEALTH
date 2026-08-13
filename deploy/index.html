@@ -34,9 +34,9 @@
   --shadow:0 30px 70px -30px rgba(6,8,26,.55);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:120%}
-@media(min-width:1400px){html{font-size:128%}}
-@media(min-width:1800px){html{font-size:140%}}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:108%}
+@media(min-width:1400px){html{font-size:115%}}
+@media(min-width:1800px){html{font-size:126%}}
 body{
   background:var(--navy);color:var(--text);
   font-family:'Plus Jakarta Sans',system-ui,sans-serif;
@@ -71,17 +71,6 @@ body::before{
 .rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
 .rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
 .rv[data-d="5"]{transition-delay:.4s}.rv[data-d="6"]{transition-delay:.48s}
-
-/* in-page photo swap button */
-.photo-swap-host:hover > .photo-swap-btn,.photo-swap-btn:focus-visible{opacity:1;transform:translateY(0)}
-.photo-swap-btn{position:absolute;top:12px;right:12px;z-index:40;display:inline-flex;align-items:center;gap:.45rem;
-  padding:.5rem .85rem;border:0;border-radius:999px;cursor:pointer;opacity:0;transform:translateY(-4px);
-  background:rgba(14,18,48,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  color:#f1eee6;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.01em;
-  box-shadow:0 6px 20px rgba(0,0,0,.35);transition:opacity .25s var(--ease),transform .25s var(--ease),background .2s}
-.photo-swap-btn:hover{background:var(--gold);color:#171d40}
-.photo-swap-btn svg{flex:none}
-@media(hover:none){.photo-swap-btn{opacity:1;transform:none;padding:.4rem;font-size:0;gap:0}.photo-swap-btn svg{width:18px;height:18px}}
 
 /* heading + line reveals, whole-element fade so text stays directly editable */
 .wr,.lr{opacity:0;transform:translateY(14px);filter:blur(.3px);
@@ -856,39 +845,6 @@ class Component extends DCLogic {
       burger.addEventListener('click', function(){ toggleMenu(!mm.classList.contains('open')); });
       mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
     }
-
-    /* ---- In-page photo swap (no edit mode needed) ---- */
-    (function(){
-      var imgs = [].slice.call(document.querySelectorAll('.hero-bg img, .cine img, .about-img img, .sx-img, #bento .tile img, .contact-bg img'));
-      if(!imgs.length) return;
-      var input = document.createElement('input');
-      input.type='file'; input.accept='image/*'; input.style.display='none';
-      document.body.appendChild(input);
-      var active=null;
-      input.addEventListener('change', function(){
-        var file=input.files && input.files[0]; if(!file||!active) return;
-        var rd=new FileReader();
-        rd.onload=function(){
-          active.src=rd.result;
-          try{ localStorage.setItem('soho-photo-'+active.getAttribute('data-pk'), rd.result); }catch(e){}
-          if(window.gsap && window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
-        };
-        rd.readAsDataURL(file);
-        input.value='';
-      });
-      imgs.forEach(function(img,i){
-        var key='k'+i; img.setAttribute('data-pk',key);
-        try{ var saved=localStorage.getItem('soho-photo-'+key); if(saved) img.src=saved; }catch(e){}
-        var host=img.parentElement;
-        if(getComputedStyle(host).position==='static') host.style.position='relative';
-        host.classList.add('photo-swap-host');
-        var btn=document.createElement('button');
-        btn.type='button'; btn.className='photo-swap-btn';
-        btn.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l1.5-2h7L18 7h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"></path><circle cx="12" cy="13" r="3.2"></circle></svg><span>Trocar foto</span>';
-        btn.addEventListener('click', function(e){ e.stopPropagation(); e.preventDefault(); active=img; input.click(); });
-        host.appendChild(btn);
-      });
-    })();
 
     /* ---- Scroll reveal (fail-safe) ---- */
     var revEls = [].slice.call(document.querySelectorAll('.rv:not(.v)'));
